@@ -41,8 +41,8 @@ class TicTacToe:
 
     def winner(self, square, letter):
         #checking row
-        row_ind = square // 3
-        row = self.board[row_ind*3: (row_ind)*3]
+        row_ind = math.floor(square / 3)
+        row = self.board[row_ind*3: (row_ind+1)*3]
         if all([spot == letter for spot in row]):
             return True
 
@@ -74,13 +74,13 @@ def play(game, x_player, o_player, print_game=True):
 
         if game.make_move(square, letter):
             if print_game:
-                print(letter+ f"makes a move to square {square}")
+                print(letter+ f" makes a move to square {square}")
                 game.print_board()
                 print("")
 
             if game.current_winner:
                 if print_game:
-                    print(letter + "wins!")
+                    print(letter + " wins!")
                 return letter
 
 
