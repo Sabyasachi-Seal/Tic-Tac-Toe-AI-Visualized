@@ -1,6 +1,5 @@
 import math # for mathematical uses
 import random # for randomly choosing a value
-import game 
 
 class Player:
     def __init__(self, letter):
@@ -14,7 +13,7 @@ class Player:
 
 class RandomComputerPlayer(Player):
     def init(self, letter):
-        super().__init__(self, letter)
+        super().__init__(letter)
     
     
     def get_move(self, game):
@@ -23,14 +22,14 @@ class RandomComputerPlayer(Player):
 
 class HumanPlayer(Player):
     def __init__(self, letter):
-        super().__init__(self, letter)
+        super().__init__(self)
     
 
     def get_move(self, game):
         valid_square = False
         val = None
         while not valid_square:
-            square = input(self.letter + "\'s Turn. Input (0-8): ")
+            square = input(f"{self.letter}\'s Turn. Input (0-8): ")
             try:
                 val = int(square)
                 if val not in game.available_moves():
