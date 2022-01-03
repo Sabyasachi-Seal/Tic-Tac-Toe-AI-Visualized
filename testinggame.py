@@ -69,14 +69,13 @@ class TicTacToe:
     def gameboard_pc(self, game_board):
         global button
         button = []
+        o_player = GeniusComputerPlayer("O")
         for i in range(3):
-            m = i
             button.append(i)
             button[i] = []
             for j in range(3):
-                n = j
                 button[i].append(j)
-                get_t = partial(self.get_text_pc, i, j, game_board)
+                get_t = o_player.get_move(game_board)
                 button[i][j] = Button(
                     game_board, bd=5, command=get_t, height=4, width=8)
                 button[i][j].grid(row=m, column=n)
