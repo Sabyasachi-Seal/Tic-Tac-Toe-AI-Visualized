@@ -4,7 +4,6 @@ from tkinter import *
 from functools import partial
 from tkinter import messagebox
 from copy import deepcopy
-from player import HumanPlayer, RandomComputerPlayer, GeniusComputerPlayer
 
 
 sign = 0
