@@ -111,18 +111,12 @@ def gameboard_pc(game_board):
             button[i][j].grid(row=m, column=n)
     game_board.mainloop()
 
-def withpc(game_board):
-    game_board.destroy()
+def withpc():
     game_board = Tk()
-    game_board.title("Tic Tac Toe")
     gameboard_pc(game_board)
 
 def play():
-    menu = Tk()
-    menu.geometry("250x250")
-    menu.title("Tic Tac Toe")
-    withpc(menu)
-    menu.mainloop()
+    withpc()
 
 # Call main function
 if __name__ == '__main__':

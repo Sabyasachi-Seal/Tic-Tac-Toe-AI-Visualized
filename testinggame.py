@@ -1,10 +1,10 @@
 import math
 import time
-from player import HumanPlayer, RandomComputerPlayer, GeniusComputerPlayer
+from testingplayer import GeniusComputerPlayer
 from tkinter import *
 from functools import partial
 from tkinter import messagebox
-
+sign = 0
 class TicTacToe:
     def __init__(self):
         self.board = self.make_board()
@@ -18,14 +18,12 @@ class TicTacToe:
         for row in [self.board[i*3:(i+1)*3] for i in range(3)]:
             print("|| " + " || ".join(row)+" ||")
     
-
     @staticmethod
     def print_board_nums():
         number_board = [[str(i) for i in range(j*3, (j+1)*3)] for j in range(3)]
         for row in number_board:
             print("|| " + " || ".join(row)+" ||")
 
-        
     def available_moves(self):
         return [i for i, spot in enumerate(self.board) if spot == " "]
 
@@ -66,33 +64,49 @@ class TicTacToe:
                 return True
         return False
 
+    def update_text(self, i, gb):
+        global sign
+        o_player = GeniusComputerPlayer("O")
+        print(i)
+        if self.board[i] == ' ':
+            if sign % 2 == 0:
+                self.board[i] = "X"
+            else:
+                self.board[i] = "O"
+            sign += 1
+            # button[i].config(text=board[i])
+        x = True
+        # if winner(board, "X"):
+        #     gb.destroy()
+        #     x = False
+        #     box = messagebox.showinfo("Winner", "Player won the match")
+        # elif winner(board, "O"):
+        #     gb.destroy()
+        #     x = False
+        #     box = messagebox.showinfo("Winner", "Computer won the match")
+        # elif(isfull()):
+        #     gb.destroy()
+        #     x = False
+        #     box = messagebox.showinfo("Tie Game", "Tie Game")
+        if(x):
+            if sign % 2 != 0:
+                move = o_player.get_move(self)
+                # button[(i+1)*(j+1)-1].config(state=DISABLED)
+                # self.update_text(move, gb)
+
     def gameboard_pc(self, game_board):
         global button
         button = []
-        o_player = GeniusComputerPlayer("O")
-        for i in range(3):
-            button.append(i)
-            button[i] = []
-            for j in range(3):
-                button[i].append(j)
-                get_t = o_player.get_move(game_board)
-                button[i][j] = Button(
-                    game_board, bd=5, command=get_t, height=4, width=8)
-                button[i][j].grid(row=m, column=n)
-        game_board.mainloop()
-
-    def withpc(self, game_board):
-        game_board.destroy()
-        game_board = Tk()
-        game_board.title("Tic Tac Toe")
-        self.gameboard_pc(game_board)
-    
-    def play(self):
-        menu = Tk()
-        menu.geometry("250x250")
-        menu.title("Tic Tac Toe")
-        self.withpc(menu)
-        menu.mainloop()
+        for index in range(len(self.board)):
+            # print(index//3, index%3)
+            button.append(Button(game_board, bd=5, text=" ", height=4, width=8, command=self.update_text(index, game_board)))
+            button[index].grid(row=(index//3), column=(index%3))
+        for index in range(len(self.board)):
+            for index2 in range(len(self.board)):
+                # button[index]['text'] = self.update_text(button[index], index, game_board)
+                button[index2].config(text=str(index2))
+                # print(button[index2], end="\n")
+        
 
     # if print_game:
     #     game.print_board_nums()
@@ -125,4 +139,8 @@ class TicTacToe:
 
 if __name__ == '__main__':
     game = TicTacToe()
-    game.play()
+    # play(game)
+    game_board = Tk()
+    game_board.title("Tic Tac Toe")
+    game.gameboard_pc(game_board)
+    game_board.mainloop()
