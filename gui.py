@@ -112,6 +112,7 @@ def gameboard_pc(game_board):
 
 def withpc():
     game_board = Tk()
+    game_board.title("Unbeatable TicTacToe")
     gameboard_pc(game_board)
 
 def play():
