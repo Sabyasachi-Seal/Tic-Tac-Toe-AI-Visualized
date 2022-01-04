@@ -1,9 +1,12 @@
 # TicTacToe GUI that is very hard to beat.
-  
+
  <hr>
- 
+
  ## How to Play?
- - Install tkinter: <code>pip install tkinter</code>
+ - Install tkinter: 
+ ```
+ pip install tkinter
+ ```
  - Clone/ Download gui.py 
  - Run gui.py
  
